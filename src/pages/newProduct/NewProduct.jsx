@@ -1,13 +1,17 @@
+import { ImagePreview } from "../../utils/ImagePreview";
 import "./NewProduct-styled.css";
 
 function NewProduct() {
+  const { readerFile, fileDataURL } = ImagePreview();
+
   return (
     <div className="newproduct-container">
       <h1 className="addProductTitle">New Product</h1>
       <form className="addProductForm">
         <div className="addProductItem">
           <label>Image</label>
-          <input type="file" id="file" />
+          <img src={fileDataURL} className="productImage" />
+          <input type="file" id="file" onChange={(e) => readerFile(e)} />
         </div>
         <div className="addProductItem">
           <label>Name</label>

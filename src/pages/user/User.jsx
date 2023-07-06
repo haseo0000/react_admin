@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, Link, NavLink } from "react-router-dom";
+import { ImagePreview } from "../../utils/ImagePreview";
 import "./User-styled.css";
 import {
   LocationSearching,
@@ -14,6 +15,8 @@ import { userList } from "../../data";
 function User() {
   const { userId } = useParams();
   const [userInfo, setUserInfo] = useState();
+
+  const { readerFile, fileDataURL } = ImagePreview();
 
   useEffect(() => {
     const user = userList.find((item) => item.id === Number(userId));
@@ -115,14 +118,19 @@ function User() {
             <div className="userUpdateRight">
               <div className="userUpdateUpload">
                 <img
-                  src={userInfo.avartar}
+                  src={fileDataURL ? fileDataURL : userInfo.avartar}
                   alt=""
                   className="userUpdateImage"
                 />
                 <label htmlFor="file">
                   <Publish className="publishIcon" />
                 </label>
-                <input type="file" id="file" style={{ display: "none" }} />
+                <input
+                  type="file"
+                  id="file"
+                  style={{ display: "none" }}
+                  onChange={(e) => readerFile(e)}
+                />
               </div>
               <button className="userUpdateButton">Update</button>
             </div>

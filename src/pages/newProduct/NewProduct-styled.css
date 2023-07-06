@@ -1,5 +1,6 @@
 .newproduct-container {
   flex: 4;
+  padding: 1rem;
 }
 
 .addProductForm {
@@ -36,4 +37,11 @@
   color: white;
   font-weight: 600;
   cursor: pointer;
+}
+
+.productImage {
+  width: 250px;
+  height: 200px;
+  border: 1px solid lightgray;
+  background-color: white;
 }
