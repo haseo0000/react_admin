@@ -1,67 +1,66 @@
+import "./ProductList-styled.css";
 import { useState, useEffect } from "react";
-import "./UserList-styled.css";
 import { DataGrid } from "@mui/x-data-grid";
 import { DeleteOutline } from "@mui/icons-material";
-import { userList } from "../../data";
+import { productList } from "../../data";
 import { Link, NavLink } from "react-router-dom";
 import Loading from "../../components/loading/Loading";
 
-function UserList() {
+function ProductList() {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState();
   const [selectedData, setSelectedData] = useState([]);
+  console.log(selectedData);
 
   const columns = [
     { field: "id", headerName: "ID", flex: 1, maxWidth: 50 },
     {
-      field: "username",
-      headerName: "User",
+      field: "product",
+      headerName: "Product",
       flex: 2,
-      maxnWidth: 85,
-      renderCell: (param) => {
+      renderCell: (params) => {
         return (
-          <div className="userListUser">
-            <img src={param.row.avartar} className="userListImage" />
-            {param.row.username}
+          <div className="productListItem">
+            <img className="productListImg" src={params.row.img} alt="" />
+            {params.row.name}
           </div>
         );
       },
     },
-    { field: "email", headerName: "Email", flex: 2 },
+    {
+      field: "stock",
+      headerName: "Stock",
+      flex: 1,
+      minWidth: 80,
+      maxWidth: 400,
+    },
     {
       field: "status",
       headerName: "Status",
       flex: 1,
-      minWidth: 80,
-      maxWidth: 85,
+      minWidth: 100,
+      maxWidth: 200,
     },
     {
-      field: "transaction",
-      headerName: "Transaction",
+      field: "price",
+      headerName: "Price",
       flex: 1,
-      maxWidth: 85,
-      renderCell: (param) => {
-        return <span>${param.row.transaction}</span>;
-      },
+      minWidth: 100,
+      maxWidth: 105,
     },
     {
       field: "action",
       headerName: "Action",
-      minWidth: 100,
-      renderCell: (param) => {
+      minWidth: 120,
+      renderCell: (params) => {
         return (
           <>
-            <Link
-              to={`/quickmenu/user/${param.row.id}`}
-              className="link-bar"
-              as={NavLink}>
-              <button className="userListEdit">Edit</button>
+            <Link to={`/quickmenu/product/${params.row.id}`} as={NavLink}>
+              <button className="productListEdit">Edit</button>
             </Link>
             <DeleteOutline
-              className="userListDelete"
-              onClick={() => {
-                handleDelete(param.row.id);
-              }}
+              className="productListDelete"
+              onClick={() => handleDelete(params.row.id)}
             />
           </>
         );
@@ -77,9 +76,9 @@ function UserList() {
   useEffect(() => {
     setLoading(true);
     setTimeout(() => {
-      setData(userList);
+      setData(productList);
       setLoading(false);
-    }, 2000);
+    }, 500);
 
     return () => {
       setData(null);
@@ -88,13 +87,13 @@ function UserList() {
 
   if (!data)
     return (
-      <div className="userList-container">
+      <div className="productlist-container">
         <Loading loading={loading} />
       </div>
     );
 
   return (
-    <div className="userList-container">
+    <div className="productlist-container">
       <div style={{ margin: "1rem", maxWidth: "100%" }}>
         <DataGrid
           disableRowSelectionOnClick
@@ -116,16 +115,8 @@ function UserList() {
           }}
         />
       </div>
-      <div>
-        {selectedData.map((item, index) => (
-          <label key={index}>
-            {item.id + " "}
-            {item.username}
-          </label>
-        ))}
-      </div>
     </div>
   );
 }
 
-export default UserList;
+export default ProductList;
