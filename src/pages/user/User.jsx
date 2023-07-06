@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link, NavLink } from "react-router-dom";
 import "./User-styled.css";
 import {
   LocationSearching,
@@ -29,7 +29,9 @@ function User() {
     <div className="user-container">
       <div className="userTitleContainer">
         <h1 className="userTitle">Edit User</h1>
-        <button className="userAddButton">Create</button>
+        <Link to={`/quickmenu/newUser/`} className="link-bar" as={NavLink}>
+          <button className="userAddButton">Create</button>
+        </Link>
       </div>
       <div className="userContainer">
         <div className="userShow">
