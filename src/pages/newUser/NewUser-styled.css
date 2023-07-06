@@ -1,0 +1,80 @@
+.newuser-container {
+  flex: 4;
+  padding: 1rem;
+}
+
+.newUserForm {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+.newUserItem {
+  display: grid;
+  gap: 1rem;
+  width: 400px;
+}
+
+.newUserItem input,
+.newUserItem select {
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  padding: 0.5rem;
+  font-size: 16px;
+}
+
+.newUserItem select {
+  cursor: pointer;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+/* Style the custom radio button */
+input[type="radio"] + label {
+  position: relative;
+  padding-left: 25px;
+  cursor: pointer;
+}
+
+/* Style the custom indicator dot */
+input[type="radio"] + label:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0px;
+  width: 15px;
+  height: 15px;
+  border: 1px solid black;
+  border-radius: 50%;
+}
+
+input[type="radio"] + label::after {
+  content: "";
+  padding-right: 1rem;
+}
+
+/* Style the custom indicator dot when selected */
+input[type="radio"]:checked + label:before {
+  background-color: rgb(51, 134, 212);
+}
+
+.newUserCreateButton {
+  width: 200px;
+  border: none;
+  background-color: darkblue;
+  color: white;
+  padding: 7px 10px;
+  border-radius: 10px;
+  margin-top: 30px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.newUserCreateButton:hover {
+  background-color: rgb(51, 134, 212);
+}
